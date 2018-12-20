@@ -21,11 +21,20 @@ public class RocketLauncher : MonoBehaviour {
         this.launchPoint.position.x,
         this.launchPoint.position.y,
         this.launchPoint.position.z);
-      rocketInst.transform.rotation = new Quaternion(
-        this.launchPoint.rotation.x,
-        this.launchPoint.rotation.y,
-        this.launchPoint.rotation.z,
-        this.launchPoint.rotation.w);
+
+      var aim = this.orientationCamera.GetComponent<CameraAim>();
+      if (aim != null) {
+        var target = aim.SearchTarget();
+        rocketInst.transform.LookAt(target);
+      } else {
+        // Nothing to use to aim. Just shoot forward.
+        Debug.Log("Orientation camera lacks CameraAim");
+        rocketInst.transform.rotation = new Quaternion(
+          this.launchPoint.rotation.x,
+          this.launchPoint.rotation.y,
+          this.launchPoint.rotation.z,
+          this.launchPoint.rotation.w);
+      }
     }
   }
 }

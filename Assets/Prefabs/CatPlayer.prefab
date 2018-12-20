@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 20234270463785772}
   - component: {fileID: 81543186512999866}
   - component: {fileID: 114081431990743832}
+  - component: {fileID: 114466444073066312}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -160,7 +161,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869680166147888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4010021075584234}
@@ -370,6 +371,18 @@ MonoBehaviour:
   launchPoint: {fileID: 4469111683664172}
   rocketPrefab: {fileID: 1557708347962818, guid: 27c86a7582fd04d76ae3de631e64f88b,
     type: 2}
+--- !u!114 &114466444073066312
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1241850948575930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9e4a041bf254428bb0e3ee45111e2c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shootOrigin: {fileID: 4010021075584234}
 --- !u!114 &114602308212277104
 MonoBehaviour:
   m_ObjectHideFlags: 1
