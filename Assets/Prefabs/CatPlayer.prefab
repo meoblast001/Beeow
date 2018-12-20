@@ -13,7 +13,7 @@ Prefab:
   m_IsPrefabAsset: 1
 --- !u!1 &1241850948575930
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 6
@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4133346530791982}
   - component: {fileID: 20234270463785772}
   - component: {fileID: 81543186512999866}
-  - component: {fileID: 114081939147356708}
+  - component: {fileID: 114081431990743832}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: Untagged
@@ -42,6 +42,22 @@ GameObject:
   - component: {fileID: 114205489310766140}
   m_Layer: 0
   m_Name: RocketLauncher
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1406470290767112
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4673280123376228}
+  - component: {fileID: 114602308212277104}
+  m_Layer: 0
+  m_Name: CameraContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -117,12 +133,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1241850948575930}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -4}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 4493901430055828}
-  m_RootOrder: 1
+  m_Father: {fileID: 4673280123376228}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4469111683664172
 Transform:
@@ -144,11 +160,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1869680166147888}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4010021075584234}
-  - {fileID: 4133346530791982}
+  - {fileID: 4673280123376228}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -165,6 +181,20 @@ Transform:
   - {fileID: 4469111683664172}
   m_Father: {fileID: 4010021075584234}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4673280123376228
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1406470290767112}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.5, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4133346530791982}
+  m_Father: {fileID: 4493901430055828}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &20234270463785772
 Camera:
@@ -309,7 +339,7 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1241850948575930}
   m_Enabled: 1
---- !u!114 &114081939147356708
+--- !u!114 &114081431990743832
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -320,8 +350,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fb90d8fac52e421bb4c887a5fbd3f74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rotationMode: 1
   rotSpeed: 9
-  target: {fileID: 4010021075584234}
+  minVertical: -75
+  maxVertical: 5
+  horizontalTarget: {fileID: 0}
 --- !u!114 &114205489310766140
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -337,6 +370,22 @@ MonoBehaviour:
   launchPoint: {fileID: 4469111683664172}
   rocketPrefab: {fileID: 1557708347962818, guid: 27c86a7582fd04d76ae3de631e64f88b,
     type: 2}
+--- !u!114 &114602308212277104
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1406470290767112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb90d8fac52e421bb4c887a5fbd3f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationMode: 0
+  rotSpeed: 9
+  minVertical: -75
+  maxVertical: 5
+  horizontalTarget: {fileID: 4010021075584234}
 --- !u!114 &114703220399466982
 MonoBehaviour:
   m_ObjectHideFlags: 1
