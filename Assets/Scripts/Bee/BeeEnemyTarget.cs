@@ -18,6 +18,7 @@ public class BeeEnemyTarget : MonoBehaviour {
   }
 
   public IEnumerator StartDestroySequence() {
+    PlayerManager.Current.CountBee();
     yield return this.movement.StartDestroySequence();
     Destroy(this.gameObject);
   }
