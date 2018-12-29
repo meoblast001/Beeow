@@ -3,11 +3,16 @@
 [AddComponentMenu("Player/ThirdPersonMovement")]
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonMovement : MonoBehaviour {
+  private const float AccelerationY = -18f;
+
   public float speed = 6.0f;
+  public float gravity = -9.8f;
+  public float jumpSpeed = 10.0f;
 
   [SerializeField] private Transform targetCamera;
 
   private CharacterController characterController;
+  private float velocityY = 0.0f;
 
   void Start() {
     this.characterController = this.GetComponent<CharacterController>();
@@ -25,6 +30,18 @@ public class ThirdPersonMovement : MonoBehaviour {
       this.characterController.Move(movement * Time.deltaTime);
       this.transform.rotation = Quaternion.LookRotation(movement);
     }
+
+    if (Input.GetButtonDown("Jump")) {
+      this.velocityY = this.jumpSpeed;
+    } else {
+      if (this.characterController.isGrounded) {
+        this.velocityY = 0.0f;
+      } else {
+        this.velocityY += AccelerationY * Time.deltaTime;
+      }
+    }
+    this.characterController.Move(
+      new Vector3(0f, this.velocityY * Time.deltaTime, 0f));
   }
 
   private Vector3 ConvertToRelative(Vector3 vector) {

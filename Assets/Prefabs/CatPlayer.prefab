@@ -104,7 +104,6 @@ GameObject:
   - component: {fileID: 4010021075584234}
   - component: {fileID: 33216266049641698}
   - component: {fileID: 23586395299417186}
-  - component: {fileID: 65833800516066968}
   - component: {fileID: 143979827053359998}
   - component: {fileID: 114703220399466982}
   m_Layer: 0
@@ -321,18 +320,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1304932619289984}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65833800516066968
-BoxCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1904050888050308}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!81 &81543186512999866
 AudioListener:
   m_ObjectHideFlags: 1
@@ -411,6 +398,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
+  gravity: -9.8
+  jumpSpeed: 10
   targetCamera: {fileID: 4133346530791982}
 --- !u!143 &143979827053359998
 CharacterController:
@@ -422,8 +411,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1
-  m_Radius: 0.5
+  m_Height: 0.85
+  m_Radius: 0.4
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
