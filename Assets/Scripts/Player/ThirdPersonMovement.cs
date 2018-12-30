@@ -10,18 +10,23 @@ public class ThirdPersonMovement : MonoBehaviour {
   public float jumpSpeed = 10.0f;
 
   [SerializeField] private Transform targetCamera;
+  [SerializeField] private Animator animator;
 
   private CharacterController characterController;
   private float velocityY = 0.0f;
+  private float idleTime = 0.0f;
 
   void Start() {
     this.characterController = this.GetComponent<CharacterController>();
   }
 
   void Update() {
+    bool isIdling = false;
+
     var horizontal = Input.GetAxis("Horizontal") * this.speed;
     var vertical = Input.GetAxis("Vertical") * this.speed;
-    if (horizontal != 0.0f || vertical != 0.0f) {
+    bool moving = horizontal != 0.0f || vertical != 0.0f;
+    if (moving) {
       var movement = new Vector3(horizontal, 0.0f, vertical);
       movement = Vector3.ClampMagnitude(movement, this.speed);
 
@@ -29,19 +34,29 @@ public class ThirdPersonMovement : MonoBehaviour {
 
       this.characterController.Move(movement * Time.deltaTime);
       this.transform.rotation = Quaternion.LookRotation(movement);
+    } else {
+      isIdling = true;
     }
+    this.animator.SetBool("moving", moving);
 
-    if (Input.GetButtonDown("Jump")) {
+    bool jumping = Input.GetButtonDown("Jump");
+    if (jumping) {
       this.velocityY = this.jumpSpeed;
     } else {
       if (this.characterController.isGrounded) {
         this.velocityY = 0.0f;
+        isIdling = true;
       } else {
         this.velocityY += AccelerationY * Time.deltaTime;
       }
     }
+    this.animator.SetBool("jumping", jumping);
+
     this.characterController.Move(
       new Vector3(0f, this.velocityY * Time.deltaTime, 0f));
+
+    this.idleTime = isIdling ? this.idleTime + Time.deltaTime : 0.0f;
+    this.animator.SetFloat("idleTime", this.idleTime);
   }
 
   private Vector3 ConvertToRelative(Vector3 vector) {
