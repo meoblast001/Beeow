@@ -14,7 +14,7 @@ public class RocketLauncher : MonoBehaviour {
       = new Vector3(selfOrient.x, targetOrient.y, selfOrient.z);
 
     // Fire.
-    var launch = Input.GetButtonDown("Fire1");
+    var launch = Input.GetButtonDown("Fire1") && !PlayerManager.Current.IsPaused;
     if (launch) {
       var rocketInst = GameObject.Instantiate(this.rocketPrefab);
       rocketInst.transform.position = new Vector3(

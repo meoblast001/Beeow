@@ -35,6 +35,9 @@ public class OrbitCamera : MonoBehaviour {
   }
 
   void Update() {
+    if (PlayerManager.Current.IsPaused)
+      return;
+
     switch (this.rotationMode) {
       case RotationMode.RotateWorldHorizontal: {
         this.rotation += Input.GetAxis("Mouse X") * this.rotSpeed;

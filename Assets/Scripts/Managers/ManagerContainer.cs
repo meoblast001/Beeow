@@ -5,7 +5,7 @@ using UnityEngine;
 public class ManagerContainer : MonoBehaviour {
   [SerializeField] private BaseManager[] managers;
 
-  void Start() {
+  void Awake() {
     foreach (var manager in managers) {
       manager.Start();
     }
