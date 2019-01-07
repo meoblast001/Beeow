@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("Player/CameraAim")]
 [RequireComponent(typeof(Camera))]
 public class CameraAim : MonoBehaviour {
-  const float EPSILON = 0.1f;
+  const float EPSILON = 0.25f;
 
   [SerializeField] private Transform shootOrigin;
   private Camera cam;
@@ -30,7 +30,7 @@ public class CameraAim : MonoBehaviour {
         var hitDist = (hit.transform.position - this.cam.transform.position)
           .magnitude;
         var isChild = hit.transform.IsChildOf(this.shootOrigin.transform);
-        return hitDist + EPSILON > originDist && !isChild;
+        return hitDist - EPSILON > originDist && !isChild;
       })
       .OrderBy(hit => hit.distance)
       .Cast<RaycastHit?>();
