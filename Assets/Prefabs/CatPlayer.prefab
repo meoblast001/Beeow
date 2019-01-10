@@ -331,6 +331,7 @@ GameObject:
   - component: {fileID: 8027825475009834837}
   - component: {fileID: 8957902400205703930}
   - component: {fileID: 7669270985848361615}
+  - component: {fileID: 3633473521159685990}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -389,6 +390,18 @@ MonoBehaviour:
   jumpSpeed: 10
   targetCamera: {fileID: 4133346530791982}
   animator: {fileID: 5952379745857588650}
+--- !u!114 &3633473521159685990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930839069265865191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80b0a09fbb2d2d121bab02a639a4ead5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5952379745864956106
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -6,6 +6,8 @@ using UnityEngine;
 public class BeeMovement : MonoBehaviour {
   private const int DirectionChooseAttempts = 10;
   private const float DestroyAfterCrashDelay = 1f;
+  private const float StartFollowingDistance = 10f;
+  private const float StopFollowingDistance = 12f;
 
   public float speed = 1.5f;
   public float destroyGravity = -3.0f;
@@ -17,9 +19,11 @@ public class BeeMovement : MonoBehaviour {
   private Bounds bounds;
   private Vector3 direction;
   private MovementMode mode = MovementMode.Normal;
+  private Transform target = null;
 
   private enum MovementMode {
     Normal,
+    Targetting,
     Destroying
   }
 
@@ -36,6 +40,24 @@ public class BeeMovement : MonoBehaviour {
   }
 
   void Update() {
+    if (this.mode == MovementMode.Normal
+        || this.mode == MovementMode.Targetting) {
+      float? targetDistance = PlayerManager.Current.PlayerObject != null
+        ? Vector3.Distance(
+          this.transform.position,
+          PlayerManager.Current.PlayerObject.transform.position)
+        : default(float?);
+
+      if (targetDistance.HasValue && targetDistance < StartFollowingDistance) {
+        this.mode = MovementMode.Targetting;
+        this.target = PlayerManager.Current.PlayerObject.transform;
+      } else if (!targetDistance.HasValue
+                || targetDistance > StopFollowingDistance) {
+        this.mode = MovementMode.Normal;
+        this.target = null;
+      }
+    }
+
     switch (this.mode) {
       case MovementMode.Normal: {
         int attempts = DirectionChooseAttempts;
@@ -45,9 +67,15 @@ public class BeeMovement : MonoBehaviour {
 
         this.transform.LookAt(this.transform.position + this.direction);
         var movement = this.speed * this.transform.forward;
-        movement = Vector3.ClampMagnitude(movement, this.speed);
         this.characterController.Move(movement * Time.deltaTime);
 
+        break;
+      }
+
+      case MovementMode.Targetting: {
+        this.transform.LookAt(this.target.position);
+        var movement = this.speed * this.transform.forward;
+        this.characterController.Move(movement * Time.deltaTime);
         break;
       }
 

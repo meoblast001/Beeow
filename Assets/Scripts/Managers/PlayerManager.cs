@@ -1,9 +1,12 @@
-﻿public class PlayerManager : BaseManager {
+﻿using UnityEngine;
+
+public class PlayerManager : BaseManager {
   public const string IsPausedEvent = "PlayerManager.IsPaused";
   public const string BeeCountEvent = "PlayerManager.BeeCountEvent";
 
   public static PlayerManager Current { get; private set; }
 
+  public GameObject PlayerObject { get; private set; }
   public bool IsPaused { get; private set; }
   public int BeeCount { get; private set; }
 
@@ -15,6 +18,10 @@
 
   public override void Stop() {
     Current = default(PlayerManager);
+  }
+
+  public void SetPlayerObject(GameObject obj) {
+    this.PlayerObject = obj;
   }
 
   public void SetPaused(bool paused) {
