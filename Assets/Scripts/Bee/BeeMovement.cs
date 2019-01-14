@@ -105,14 +105,14 @@ public class BeeMovement : MonoBehaviour {
 
   private bool IsApproachingCollision() {
     RaycastHit hit;
-    var hasHit = Physics.SphereCast(
+    return Physics.SphereCast(
       this.transform.position,
       (this.bounds.size.x + this.bounds.size.y) / 2f,
       this.transform.forward,
-      out hit);
-    return hasHit
-      && Vector3.Distance(this.transform.position, hit.point)
-      < this.bounds.size.z;
+      out hit,
+      this.bounds.size.z * 2f,
+      ~0,
+      QueryTriggerInteraction.Ignore);
   }
 
   private Vector3 RandomDirection() {

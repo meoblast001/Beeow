@@ -13,11 +13,15 @@ public class BeeEnemyTarget : MonoBehaviour {
   public void OnTriggerEnter(Collider other) {
     var isRocket = other.GetComponent<Rocket>() != null;
     if (isRocket) {
-      this.StartCoroutine(StartDestroySequence());
+      this.StartCoroutine(this.StartDestroySequence());
     }
   }
 
-  public IEnumerator StartDestroySequence() {
+  public void OnOutOfBounds() {
+    Destroy(this.gameObject);
+  }
+
+  private IEnumerator StartDestroySequence() {
     PlayerManager.Current.CountBee();
     yield return this.movement.StartDestroySequence();
     Destroy(this.gameObject);

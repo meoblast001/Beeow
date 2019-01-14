@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 8957902400205703930}
   - component: {fileID: 7669270985848361615}
   - component: {fileID: 3633473521159685990}
+  - component: {fileID: 3124891831421408302}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -402,6 +403,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80b0a09fbb2d2d121bab02a639a4ead5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3124891831421408302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930839069265865191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f433fa2dad0ea5ca7bc8053cc6ead8a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onDestroy:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3633473521159685990}
+        m_MethodName: Lose
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &5952379745864956106
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -24,7 +24,9 @@ public class CameraAim : MonoBehaviour {
     RaycastHit[] hits = Physics.RaycastAll(
       this.transform.position,
       ray.direction,
-      this.cam.farClipPlane);
+      this.cam.farClipPlane,
+      ~0,
+      QueryTriggerInteraction.Ignore);
     IEnumerable<RaycastHit?> targetableHits = hits
       .Where(hit => {
         var hitDist = (hit.transform.position - this.cam.transform.position)
