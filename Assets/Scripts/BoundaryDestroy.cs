@@ -13,7 +13,6 @@ public class BoundaryDestroy : MonoBehaviour {
     var boundary = GameObject.FindWithTag("Boundary");
     var bounds
       = new Bounds(boundary.transform.position, boundary.transform.localScale);
-    Debug.Log(gameObject.name + ": " + bounds + ", " + this.transform + " | " + boundary.name);
     if (!bounds.Contains(this.transform.position)) {
       this.onDestroy.Invoke();
     }
