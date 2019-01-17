@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(BeeMovement))]
 public class BeeEnemyTarget : MonoBehaviour {
   private BeeMovement movement;
+  private bool destroyable = true;
 
   void Start() {
     this.movement = this.GetComponent<BeeMovement>();
@@ -12,7 +13,8 @@ public class BeeEnemyTarget : MonoBehaviour {
 
   public void OnTriggerEnter(Collider other) {
     var isRocket = other.GetComponent<Rocket>() != null;
-    if (isRocket) {
+    if (isRocket && this.destroyable) {
+      this.destroyable = false;
       this.StartCoroutine(this.StartDestroySequence());
     }
   }
