@@ -39,7 +39,15 @@ public class ThirdPersonMovement : MonoBehaviour {
     }
     this.animator.SetBool("moving", moving);
 
-    bool jumping = Input.GetButtonDown("Jump");
+    float groundedDistance
+      = (this.characterController.height + this.characterController.radius)
+      / 1.9f;
+    bool isGrounded = Physics.Raycast(
+      this.transform.position,
+      -this.transform.up,
+      groundedDistance);
+
+    bool jumping = Input.GetButtonDown("Jump") && isGrounded;
     if (jumping) {
       this.velocityY = this.jumpSpeed;
     } else {
