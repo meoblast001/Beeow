@@ -14,9 +14,6 @@ public class FishCollectible : MonoBehaviour {
   void OnTriggerEnter(Collider other) {
     if (other.GetComponent<SingletonPlayer>() != null) {
       PlayerManager.Current.CountFish();
-      Debug.Log("Fish collect: "
-        + PlayerManager.Current.FishCount + " / "
-        + PlayerManager.Current.TotalFishCount);
       Destroy(this.gameObject);
     }
   }
