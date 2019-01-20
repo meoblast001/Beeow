@@ -10,7 +10,7 @@ public class BeeMovement : MonoBehaviour {
   private const float StopFollowingDistance = 12f;
 
   public float speed = 1.5f;
-  public float destroyGravity = -3.0f;
+  public float destroyGravity = -5.0f;
 
   [SerializeField] private ParticleSystem crashing;
   [SerializeField] private GameObject crashAnimation;
