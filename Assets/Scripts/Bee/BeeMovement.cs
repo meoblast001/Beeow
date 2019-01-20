@@ -107,7 +107,7 @@ public class BeeMovement : MonoBehaviour {
     RaycastHit hit;
     return Physics.SphereCast(
       this.transform.position,
-      (this.bounds.size.x + this.bounds.size.y) / 2f,
+      (this.bounds.size.x + this.bounds.size.y) / 6f,
       this.transform.forward,
       out hit,
       this.bounds.size.z * 2f,
