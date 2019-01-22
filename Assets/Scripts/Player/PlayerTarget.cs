@@ -11,7 +11,7 @@ public class PlayerTarget : MonoBehaviour {
 
   void OnTriggerEnter(Collider other) {
     if (other.GetComponent<BeeMovement>()) {
-      this.player.Lose();
+      PlayerManager.Current.ChangeHealth(-1);
     }
   }
 }
