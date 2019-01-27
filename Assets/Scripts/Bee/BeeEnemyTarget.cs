@@ -15,7 +15,13 @@ public class BeeEnemyTarget : MonoBehaviour {
     var isRocket = other.GetComponent<Rocket>() != null;
     if (isRocket && this.destroyable) {
       this.destroyable = false;
-      this.StartCoroutine(this.StartDestroySequence());
+      this.StartCoroutine(this.OnAttacked());
+    }
+
+    var isPlayer = other.GetComponent<PlayerTarget>() != null;
+    if (isPlayer && this.destroyable) {
+      this.destroyable = false;
+      this.StartCoroutine(this.OnAttack());
     }
   }
 
@@ -23,9 +29,14 @@ public class BeeEnemyTarget : MonoBehaviour {
     Destroy(this.gameObject);
   }
 
-  private IEnumerator StartDestroySequence() {
+  private IEnumerator OnAttacked() {
     PlayerManager.Current.CountBee();
     yield return this.movement.StartDestroySequence();
+    Destroy(this.gameObject);
+  }
+
+  private IEnumerator OnAttack() {
+    yield return this.movement.StartDestroyedSequence();
     Destroy(this.gameObject);
   }
 }

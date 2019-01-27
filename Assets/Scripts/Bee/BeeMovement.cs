@@ -24,7 +24,8 @@ public class BeeMovement : MonoBehaviour {
   private enum MovementMode {
     Normal,
     Targetting,
-    Destroying
+    Destroying,
+    Destroyed
   }
 
   void Start() {
@@ -88,6 +89,9 @@ public class BeeMovement : MonoBehaviour {
 
         break;
       }
+
+      case MovementMode.Destroyed:
+        break;
     }
   }
 
@@ -97,7 +101,11 @@ public class BeeMovement : MonoBehaviour {
     while (!this.characterController.isGrounded) {
       yield return null;
     }
+    yield return this.StartDestroyedSequence();
+  }
 
+  public IEnumerator StartDestroyedSequence() {
+    this.mode = MovementMode.Destroyed;
     var animation = Instantiate(this.crashAnimation);
     animation.transform.position = this.transform.position;
     yield return new WaitForSeconds(DestroyAfterCrashDelay);
