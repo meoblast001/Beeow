@@ -17,9 +17,10 @@ public static class EventSystem {
   public static void Unsubscribe(string name, EventHandler callback) {
     lock (eventHandlers) {
       if (eventHandlers.ContainsKey(name)) {
+        eventHandlers[name] -= callback;
         var eventHandler = eventHandlers[name];
-        eventHandler -= callback;
-        if (eventHandler.GetInvocationList().Length == 0) {
+        if (eventHandler == null
+          || eventHandler.GetInvocationList().Length == 0) {
           eventHandlers.Remove(name);
         }
       }
