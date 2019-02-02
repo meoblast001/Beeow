@@ -44,3 +44,5 @@ sysinfo.txt
 # Crashlytics generated file
 Assets/StreamingAssets/crashlytics-build.properties
 
+# ProBuilder settings
+ProjectSettings/ProBuilderSettings.json
