@@ -309,8 +309,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12330ce4c5ad44ce7abbadb3af85ba90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
-  destroyGravity: -3
+  speed: 3
+  destroyGravity: -5
   crashing: {fileID: 198538388709392380}
   crashAnimation: {fileID: 1854650979534244, guid: 880e59958228c4edeac01700147eba7a,
     type: 3}

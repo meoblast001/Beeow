@@ -5,9 +5,9 @@
 public class ThirdPersonMovement : MonoBehaviour {
   private const float AccelerationY = -18f;
 
-  public float speed = 6.0f;
+  public float speed = 10.0f;
   public float gravity = -9.8f;
-  public float jumpSpeed = 10.0f;
+  public float jumpSpeed = 12.0f;
 
   [SerializeField] private Transform targetCamera;
   [SerializeField] private Animator animator;

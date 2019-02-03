@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("Player/Rocket")]
 public class Rocket : MonoBehaviour {
   public float maxTravelDistance = 50.0f;
-  public float speed = 18.0f;
+  public float speed = 30.0f;
 
   private Vector3 startPosition;
 
