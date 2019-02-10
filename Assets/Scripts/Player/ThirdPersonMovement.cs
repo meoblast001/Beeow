@@ -3,11 +3,10 @@
 [AddComponentMenu("Player/ThirdPersonMovement")]
 [RequireComponent(typeof(CharacterController))]
 public class ThirdPersonMovement : MonoBehaviour {
-  private const float AccelerationY = -18f;
-
   public float speed = 10.0f;
   public float gravity = -9.8f;
-  public float jumpSpeed = 12.0f;
+  public float terminalVelocity = -54f;
+  public float jumpSpeed = 8.0f;
 
   [SerializeField] private Transform targetCamera;
   [SerializeField] private Animator animator;
@@ -21,47 +20,44 @@ public class ThirdPersonMovement : MonoBehaviour {
   }
 
   void Update() {
-    bool isIdling = false;
+    var movement = new Vector3();
+    bool isGrounded = this.characterController.isGrounded;
+
+    bool isIdling = true;
 
     var horizontal = Input.GetAxis("Horizontal") * this.speed;
     var vertical = Input.GetAxis("Vertical") * this.speed;
     bool moving = horizontal != 0.0f || vertical != 0.0f;
     if (moving) {
-      var movement = new Vector3(horizontal, 0.0f, vertical);
-      movement = Vector3.ClampMagnitude(movement, this.speed);
+      movement.x = horizontal;
+      movement.z = vertical;
+      movement = this.ConvertToRelative(
+        Vector3.ClampMagnitude(movement, this.speed));
 
-      movement = this.ConvertToRelative(movement);
-
-      this.characterController.Move(movement * Time.deltaTime);
       this.transform.rotation = Quaternion.LookRotation(movement);
-    } else {
-      isIdling = true;
+
+      isIdling = false;
     }
     this.animator.SetBool("moving", moving);
-
-    float groundedDistance
-      = (this.characterController.height + this.characterController.radius)
-      / 1.9f;
-    bool isGrounded = Physics.Raycast(
-      this.transform.position,
-      -this.transform.up,
-      groundedDistance);
 
     bool jumping = Input.GetButtonDown("Jump") && isGrounded;
     if (jumping) {
       this.velocityY = this.jumpSpeed;
+      isIdling = false;
     } else {
-      if (this.characterController.isGrounded) {
-        this.velocityY = 0.0f;
-        isIdling = true;
+      if (isGrounded) {
+        this.velocityY = -1.0f;
       } else {
-        this.velocityY += AccelerationY * Time.deltaTime;
+        if (this.velocityY > this.terminalVelocity)
+          this.velocityY += this.gravity * Time.deltaTime;
+
+        isIdling = false;
       }
     }
     this.animator.SetBool("jumping", jumping);
 
-    this.characterController.Move(
-      new Vector3(0f, this.velocityY * Time.deltaTime, 0f));
+    movement.y = this.velocityY;
+    this.characterController.Move(movement * Time.deltaTime);
 
     this.idleTime = isIdling ? this.idleTime + Time.deltaTime : 0.0f;
     this.animator.SetFloat("idleTime", this.idleTime);

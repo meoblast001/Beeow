@@ -334,6 +334,7 @@ GameObject:
   - component: {fileID: 3633473521159685990}
   - component: {fileID: 2601070534663082830}
   - component: {fileID: 3124891831421408302}
+  - component: {fileID: 3840635418250378458}
   m_Layer: 0
   m_Name: Cat
   m_TagString: Untagged
@@ -389,7 +390,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   gravity: -9.8
-  jumpSpeed: 12
+  terminalVelocity: -54
+  jumpSpeed: 8
   targetCamera: {fileID: 4133346530791982}
   animator: {fileID: 5952379745857588650}
 --- !u!114 &3633473521159685990
@@ -444,6 +446,18 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &3840635418250378458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4930839069265865191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2a1086d2cdf395a88f6d93e3e1d024, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5952379745864956106
 PrefabInstance:
   m_ObjectHideFlags: 0
