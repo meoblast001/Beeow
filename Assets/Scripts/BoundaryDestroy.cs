@@ -11,6 +11,9 @@ public class BoundaryDestroy : MonoBehaviour {
 
   public void Update() {
     var boundary = GameObject.FindWithTag("Boundary");
+    if (boundary == null)
+      return;
+
     var bounds
       = new Bounds(boundary.transform.position, boundary.transform.localScale);
     if (!bounds.Contains(this.transform.position)) {
